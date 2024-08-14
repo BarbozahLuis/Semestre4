@@ -66,7 +66,7 @@ class UserController extends Controller
         ]);
 
 
-        //Auth::login($usuario);
+        Auth::login($usuario);
 
 
         return redirect('/dashboard');
@@ -81,6 +81,7 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
         $request->session()->invalidate();
+        $request->session()->regenerate(); //não é obrigatório
 
 
         return redirect('/');
