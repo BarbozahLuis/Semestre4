@@ -66,10 +66,10 @@ class UserController extends Controller
         ]);
 
 
-        Auth::login($usuario);
+        Auth::login($usuario); //cadastra o usuário
 
 
-        return redirect('/dashboard');
+        return redirect('/dashboard');//após o cadastro já redireciona ele para a pagina interna
     }
 
 

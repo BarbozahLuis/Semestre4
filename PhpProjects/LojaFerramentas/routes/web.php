@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -33,3 +34,6 @@ Route::get('/dashboard',function(){
 
 //rota do botão logout
 Route::post('/logout',[UserController::class,'logout']);
+
+//rota produtos
+Route::resource('produtos', ProdutoController::class)->middleware('auth');
