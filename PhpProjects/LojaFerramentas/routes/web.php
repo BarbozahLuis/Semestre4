@@ -5,6 +5,7 @@ use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\ProdutosMiddleware;
+use App\Http\Controllers\DashboardController;
 
 // //rota para exibir a pagina home
 // Route::get('/', function () {
@@ -32,9 +33,11 @@ Route::post('/login',[UserController::class, 'login'])->
 name('usuarios.login');
 
 //criar uma rota para página interna onde ela só pode ser acessado se o usuário tiver feito o login
-Route::get('/dashboard',function(){
-    return view('usuarios.dashboard');
-})->middleware('auth')->name('usuarios.dashboard');    //nessa linha faremos a autenticação(validação) para que apenas o usuário que efetuou o login possa acessar
+Route::get('/dashboard',[DashboardController::class,'index'])//criar esse código após a criação da dashboardcontroller
+->middleware('auth')->name('dashboard');    //nessa linha faremos a autenticação(validação) para que apenas o usuário que efetuou o login possa acessar
+
+// Route::get('/dashboard',function(){return view('usuarios.dashboard');
+// })->middleware('auth')->name('usuarios.dashboard');
 
 
 //rota do botão logout
