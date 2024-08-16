@@ -1,13 +1,18 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\ProdutosMiddleware;
 
-//rota para exibir a pagina home
-Route::get('/', function () {
-    return view('home');
-});
+// //rota para exibir a pagina home
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+//página inicial com carrossel de produtos
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //no código abaixo a rota do tipo get vai ser para mostrar o formulário na tela
 Route::get('/registro',[UserController::class, 'showRegistroForm'])->
@@ -35,5 +40,9 @@ Route::get('/dashboard',function(){
 //rota do botão logout
 Route::post('/logout',[UserController::class,'logout']);
 
-//rota produtos
-Route::resource('produtos', ProdutoController::class)->middleware('auth');
+//rota para pagina de produtos e que nao permite acesso sem login do ADM
+Route::resource('produtos', ProdutoController::class)->
+middleware(ProdutosMiddleware::class); //autenticação de meio de curso, restringir uma pagina onde não é permitido que todos os usuários consigam acessar apenas se tiver permissão
+
+
+

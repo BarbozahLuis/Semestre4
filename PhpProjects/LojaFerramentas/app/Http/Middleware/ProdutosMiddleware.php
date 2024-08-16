@@ -16,7 +16,7 @@ class ProdutosMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->tipo_usuario ==='administrador'){
+        if(Auth::check() && Auth::user()->tipo_usuario ==='administrador'){ //faz o checking se foi feito o login, e o tipo de usuario
             return $next($request);
         }
         

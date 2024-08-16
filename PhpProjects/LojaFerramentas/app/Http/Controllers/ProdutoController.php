@@ -10,16 +10,18 @@ class ProdutoController extends Controller
 {
     /**
      * lista todos os produtos
+     * contem uma tabela e nessa tabela irá listar todos os produtos que contém no banco de dados
      */
     public function index()
     {
-        $produtos = Produto::all();
-        return view('produtos.index',compact('produtos'));
+        $produtos = Produto::all();// essa variavel recebe todos os produtos cadastrado no banco de dados utilizando esse metodo all
+         return view('produtos.index',compact('produtos')); //esse compact prondutos, buscas todos os produtos do model pois o model esta ligado diretamente com o banco de dados
     }
 
     /**
      * abre o formulario de cadastro
      */
+    //quando chamamos a create ele vai exibir o formulario para preenchermos
     public function create()
     {
         return view('produtos.create');
@@ -28,6 +30,7 @@ class ProdutoController extends Controller
     /**
      * armazena/envia o formulario de cadastro
      */
+    //após o create ele vai validar as informações a partir do store, e em seguida enviar as informações para o banco de dados
     public function store(Request $request)
     {
         $request->validate([

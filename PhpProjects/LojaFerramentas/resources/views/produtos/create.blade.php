@@ -51,6 +51,11 @@
                 <input type="text" name="preco" class="form-control" placeholder="Preço">
             </div>
 
+            {{-- <div class="form-group">
+                <label for="img">Imagem:</label>
+                <input type="file" name="img" class="form-control" placeholder="Imagem">
+            </div> --}}
+
 
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
