@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\ProdutosMiddleware;
 use App\Http\Controllers\DashboardController;
+use App\Models\Carrinho;
 
 // //rota para exibir a pagina home
 // Route::get('/', function () {
@@ -44,8 +46,19 @@ Route::get('/dashboard',[DashboardController::class,'index'])//criar esse códig
 Route::post('/logout',[UserController::class,'logout']);
 
 //rota para pagina de produtos e que nao permite acesso sem login do ADM
+// Route::resource('produtos', ProdutoController::class)->
+// middleware(ProdutosMiddleware::class); //autenticação de meio de curso, restringir uma pagina onde não é permitido que todos os usuários consigam acessar apenas se tiver permissão
+
 Route::resource('produtos', ProdutoController::class)->
-middleware(ProdutosMiddleware::class); //autenticação de meio de curso, restringir uma pagina onde não é permitido que todos os usuários consigam acessar apenas se tiver permissão
+middleware(ProdutosMiddleware::class)->except('show'); //acrescentado o except para que o cliente consiga acessar e não fique limitado apenas para adm
+
+//rota para visualização de um produto especifico
+Route::get('produtos/{produto}', [ProdutoController::class, 'show'])
+->middleware('auth')->name('produtos.show');
+
+//rota para adicionar produto no carrinho
+Route::post('carrinho/add/{produto}', [CarrinhoController::class, 'add'])
+->middleware('auth')->name('carrinho.add');
 
 
 
