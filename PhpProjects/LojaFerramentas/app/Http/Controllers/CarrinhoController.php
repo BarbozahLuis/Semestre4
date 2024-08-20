@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Carrinho;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,11 +15,11 @@ class CarrinhoController extends Controller
             'quantidade'=> 'required|numeric|min:1'
         ]);
 
-        Produto::create(['id_produto'=>$produto->id, 
+        Carrinho::create(['id_produto'=>$produto->id, 
                             'id_user'=>Auth::id(),
-                            'quantidade'=>$request->quantidade]);
+                            'quantidade'=>$dados]);
 
-        return redirect()->route('produtos.show')
+        return redirect()->route('produtos.show', $produto)
         ->with('success','Produto adicionado ao Carrinho.');
     }
 }
