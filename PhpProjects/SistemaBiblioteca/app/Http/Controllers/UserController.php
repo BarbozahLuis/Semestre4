@@ -20,11 +20,13 @@ class UserController extends Controller
             'email'=>['required', 'email'],
             'password'=>['required'],
         ]);
+
         //criar If para efetuar a validação, e após a validação enviar para a página interna de livros
         if(Auth::guard('web')->attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/dashboard'); //redireciona o cliente para a página interna de livros
         }
+
         //caso as crêdenciais solicitadas estejam incorretas retorna a mensagem abaixo
         return back()->withErrors([
             'email'=>'As credenciais não correspondem aos nossos registros.',
@@ -33,7 +35,7 @@ class UserController extends Controller
 
     //Exibir formulario de registro
     public function showRegistroForm(){
-        return view('ususarios.registro');
+        return view('usuarios.registro');
     }
 
     //Processar o registro de um novo usuário
@@ -52,7 +54,7 @@ class UserController extends Controller
             'password'=>Hash::make($request)
         ]);
         //após a criação redireciona a pessoa para a página home
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function logout(Request $request){
@@ -60,6 +62,7 @@ class UserController extends Controller
 
         $request->session()->regenerateToken();
         $request->session()->invalidate();
+        $request->session()->regenerate();
 
         return redirect('/');
     }
