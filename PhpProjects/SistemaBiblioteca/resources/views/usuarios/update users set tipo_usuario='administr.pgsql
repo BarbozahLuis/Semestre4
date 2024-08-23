@@ -1,0 +1,1 @@
+update users set tipo_usuario='administrador' where id=1
