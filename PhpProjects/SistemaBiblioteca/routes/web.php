@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\LivrosMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -9,6 +10,10 @@ use App\Http\Controllers\UserController;
 
 //pagina inicial de Livros
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/ajuda', function(){
+    return view('ajuda');
+});
 
 //rota do tipo get será utilizada para mostrar o formulário na tela
 Route::get('/registro',[UserController::class, 'showRegistroForm'])->
@@ -40,5 +45,7 @@ middleware(LivrosMiddleware::class)->except('show');
 Route::get('livros/{livro}', [LivroController::class, 'show'])
 ->middleware('auth')->name('livros.show');
 
-
+//rota para adicionar efetuar o empréstimo
+Route::post('emprestimo/add/{livro}', [EmprestimoController::class, 'add'])
+->middleware('auth')->name('emprestimo.add');
 

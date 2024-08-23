@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('endereco')->nullable();
             $table->string('telefone')->nullable();
-            $table->enum('tipo_usuario', ['cliente', 'administrador']);
+            $table->enum('tipo_usuario', ['cliente', 'administrador'])->default('cliente');
             $table->rememberToken();
             $table->timestamps();
         });

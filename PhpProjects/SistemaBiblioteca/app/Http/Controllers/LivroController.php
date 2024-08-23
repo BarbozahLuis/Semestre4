@@ -3,66 +3,84 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livro;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LivroController extends Controller
 {
 
-    //lista todos os produtos
-    public function index(){
-        $livros=Livro::all();// essa variavel recebe todos os livros cadastrado no banco de dados utilizando esse metodo all
-        return view ('livros.index',compact('livros'));//o compact livros busca todos os livros que estão no model esta diretamente ligado com o model
+    //lista todos os livros
+    public function index()
+    {
+        $livros = Livro::all();// essa variavel recebe todos os livros cadastrado no banco de dados utilizando esse metodo all
+         return view('livros.index',compact('livros')); //esse compact livros, buscas todos os livros do model pois o model esta ligado diretamente com o banco de dados
     }
 
-    //Quando chamamos o create ele vai exibir o formulario para preenchermos
-    public function create(){
+    /**
+     * abre o formulario de cadastro
+     */
+    //quando chamamos a create ele vai exibir o formulario para preenchermos
+    public function create()
+    {
         return view('livros.create');
     }
 
-    //após o create efetuar a validar as informações a partir do store em seguida ele envia as informações para o banco de dados
+    /**
+     * armazena/envia o formulario de cadastro
+     */
+    //após o create ele vai validar as informações a partir do store, e em seguida enviar as informações para o banco de dados
     public function store(Request $request)
     {
         $request->validate([
-            'nome'=>'required|string|max:255',
-            'descricao'=>'required',
-            'categoria'=>'required',
-            'quantidade'=>'required|numeric',
+            'nome'=> 'required|string|max:255',
+            'descricao'=> 'required',
+            'categoria'=> 'required',
+            'quantidade'=> 'required|numeric',
         ]);
 
-        Livro::create($request)->all();
+        Livro::create($request->all());
 
-        return redirect()->route('livros.index')->
-        with('success', 'Livro Criado com Sucesso');
+        return redirect()->route('livros.index')-> 
+        with('success','Livro criado com sucesso');
     }
 
-    //o edit ira abrir todas as informações do produto para que possamos efetuar a edição do mesmo
-    public function edit(Livro $livro){
-        return view('livros.edit',compact('produto'));
+    
+
+    /**
+     * vai abrir todas as informações do livro para que possamos efetuar a edição do mesmo
+     */
+    public function edit(Livro $livro)
+    {
+        return view('livros.edit',compact('livro'));
     }
 
-    //o update faz a atualização do produto, ele irá permitir que façamos alterações
-    public function update(Request $request, Livro $livro){
+    
+    public function update(Request $request, Livro $livro)
+    {
         $request->validate([
-            'nome'=>'required|string|max:255',
-            'descricao'=>'required',
-            'categoria'=>'required',
-            'quantidade'=>'required|numeric',
+            'nome'=> 'required|string|max:255',
+            'descricao'=> 'required',
+            'categoria'=> 'required',
+            'quantidade'=> 'required|numeric',
         ]);
 
-        $livro->update($request->all());//coletando a informação do livro desejado e efetuando o update/atualização das informações desse livro
+        $livro->update($request->all()); //coletando o livro e efetuando um update/atualização das informações do livro
 
-        return redirect()->route('livros.index')->
+        return redirect()->route('livros.index')-> 
         with('sucess','Livro atualizado com sucesso');
     }
 
-    public function destroy(Livro $livro){
+    
+    public function destroy(Livro $livro)
+    {
         $livro->delete();
 
+
         return redirect()->route('livros.index')->
-        with('sucess','Livro Deletado com sucesso');
+        with('sucess','Livro Deletado com Sucesso');
     }
 
-    //exibir os livros em livrosController
+    //mostrar os livros em livrocontroller
     public function show(Livro $livro){
         return view('livros.show',compact('livro'));
     }

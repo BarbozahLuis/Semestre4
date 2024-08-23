@@ -1,0 +1,183 @@
+/* Estilo geral do corpo e do HTML para garantir que a página ocupe toda a altura da tela */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container de conteúdo principal */
+.content {
+    padding-bottom: 60px; /* Espaço suficiente para o footer */
+}
+
+/* Estilo geral do footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilo para o conteúdo do footer */
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Estilo para os links no footer */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o card */
+.card {
+    width: 18rem; /* Define a largura do card */
+    margin: 20px auto; /* Centraliza o card e adiciona margem */
+    border: 1px solid #ddd; /* Borda ao redor do card */
+    border-radius: 8px; /* Bordas arredondadas */
+    overflow: hidden; /* Garante que o conteúdo não ultrapasse os limites do card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+/* Estilo para a imagem do card */
+.card-img-top {
+    width: 100%; /* A imagem ocupa 100% da largura do card */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: cover; /* Ajusta a imagem para cobrir o contêiner sem distorcer */
+}
+
+/* Estilo para o corpo do card */
+.card-body {
+    padding: 10px; /* Adiciona espaçamento interno */
+}
+
+/* Estilo geral para o header */
+.header {
+    background-color: #f8f9fa; /* Cor de fundo clara */
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd; /* Borda inferior leve */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    display: flex; /* Usa Flexbox para o layout */
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Distribui o espaço entre os itens */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha abaixo se não houver espaço suficiente */
+}
+
+/* Estilo para a seção de informações do usuário */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* Espaço entre as seções */
+    flex: 1; /* Faz com que esta seção ocupe o espaço disponível antes dos itens flexíveis (como o botão de logout) */
+}
+
+.user-info h3,
+.user-info h4 {
+    margin: 0;
+    color: #333; /* Cor do texto */
+}
+
+/* Estilo para o formulário de logout */
+.logout-form {
+    display: flex;
+    align-items: center; /* Alinha o botão verticalmente ao centro */
+    margin-left: auto; /* Empurra o formulário para o final do contêiner flexível */
+    margin-left: 20px; /* Adiciona uma margem à esquerda do botão de logout */
+}
+
+/* Estilo para o botão de logout */
+.logout-button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Estilo para o painel de administração */
+.admin-dashboard {
+    display: flex;
+    align-items: center;
+    margin-right: 20px; /* Espaço entre o painel e o botão de logout */
+}
+
+/* Estilo para o botão de painel de administração */
+.admin-dashboard-button {
+    background-color: #0275d8; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transições suaves */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    display: inline-flex; /* Ajusta o botão para o tamanho do conteúdo */
+    align-items: center; /* Alinha o texto verticalmente ao centro */
+    justify-content: center; /* Centraliza o texto horizontalmente */
+    margin-left: 20px; /* Adiciona uma margem à esquerda do botão de administração */
+}
+
+.admin-dashboard-button:hover {
+    background-color: #025aa5; /* Cor de fundo ao passar o mouse */
+    color: #e9ecef; /* Cor do texto ao passar o mouse */
+}
+
+.admin-dashboard-button:focus {
+    outline: none; /* Remove o contorno padrão de foco */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Adiciona um contorno azul claro ao foco */
+}
+
+/* Estilo para os links de autenticação */
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.auth-links ul {
+    list-style: none; /* Remove os pontos da lista */
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.auth-links li {
+    margin: 0 10px; /* Espaço entre os itens */
+}
+
+.auth-links a {
+    text-decoration: none;
+    color: #0275d8; /* Cor dos links */
+    font-size: 16px;
+}
+
+.auth-links a:hover {
+    text-decoration: underline; /* Sublinha o link ao passar o mouse */
+}

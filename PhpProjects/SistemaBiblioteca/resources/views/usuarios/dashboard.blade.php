@@ -17,7 +17,7 @@
         @foreach ($livros as $livro)
             <div class="col-md-4">
                 <div class="card">
-                    <img src="assets/img/img1.jpg" class="card-img-top" alt="{{ $livro->nome }}">
+                    <img src="assets/img/YagoMartins.jpg" class="card-img-top" alt="{{ $livro->nome }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $livro->nome }}</h5>
                         <p class="card-text">{{ $livro->descricao }}</p>
