@@ -8,6 +8,9 @@
         </div>
         
         @if (Auth::user()->isAdmin())
+        <button class="button" onclick="window.location.href='/dashboard'">
+            Home
+        </button>
         <button class="admin-dashboard-button" onclick="window.location.href='/livros'">
             Adicionar Livro
         </button>

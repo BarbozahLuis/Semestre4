@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* Reset básico */
+    
+</style>
+
 <div class="container">
     <h1>Registrar-se</h1>
     <form method="POST" action="{{ route('usuarios.registro') }}">
@@ -35,7 +40,7 @@
             <input type="password" name="password_confirmation" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Registrar-se</button>
+        <button type="submit" class="btn-primary">Registrar-se</button>
     </form>
 </div>
 @endsection

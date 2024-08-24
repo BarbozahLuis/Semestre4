@@ -4,8 +4,8 @@
 @section('content')
 
 <div class="container">
-    <h1>Dashboard de livros</h1>
-
+    <h1>Biblioteca Imperial</h1>
+    <h2>Onde os livros ganham vida</h2>
 
     <form method="GET" action="{{ route('dashboard') }}">
         <input type="text" name="search" placeholder="Pesquisar livros..." value="{{ request('search') }}">

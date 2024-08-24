@@ -11,9 +11,6 @@ use App\Http\Controllers\UserController;
 //pagina inicial de Livros
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/ajuda', function(){
-    return view('ajuda');
-});
 
 //rota do tipo get será utilizada para mostrar o formulário na tela
 Route::get('/registro',[UserController::class, 'showRegistroForm'])->

@@ -41,7 +41,7 @@ class LivroController extends Controller
         Livro::create($request->all());
 
         return redirect()->route('livros.index')-> 
-        with('success','Livro criado com sucesso');
+        with('sucess','Livro criado com sucesso');
     }
 
     

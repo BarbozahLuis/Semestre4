@@ -36,7 +36,7 @@
             <td>{{ $livro->quantidade}}</td>
             <td>
                 <form action="{{ route('livros.destroy', $livro->id) }}" method="POST">
-                    <a class="btn btn-info" href="{{ route('livros.show', $livro->id) }}">Mostrar</a>
+                    {{-- <a class="btn btn-info" href="{{ route('livros.show', $livro->id) }}">Mostrar</a> --}}
                     <a class="btn btn-primary" href="{{ route('livros.edit', $livro->id) }}">Editar</a>
 
 

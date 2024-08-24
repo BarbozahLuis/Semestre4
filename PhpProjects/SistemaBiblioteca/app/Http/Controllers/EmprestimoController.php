@@ -19,6 +19,6 @@ class EmprestimoController extends Controller
                             'quantidade'=>$request->quantidade]);
 
         return redirect()->route('livros.show', $livro)
-        ->with('success','Livro emprestado com sucesso.');
+        ->with('sucess','Livro emprestado com sucesso.');
     }
 }

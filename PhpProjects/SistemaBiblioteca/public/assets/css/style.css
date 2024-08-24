@@ -12,7 +12,7 @@ html, body {
 
 /* Estilo geral do footer */
 footer {
-    background-color: #333;
+    background-color: #868686;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -180,4 +180,20 @@ footer {
 
 .auth-links a:hover {
     text-decoration: underline; /* Sublinha o link ao passar o mouse */
+}
+
+
+.button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
