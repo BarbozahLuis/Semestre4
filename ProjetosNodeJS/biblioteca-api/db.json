@@ -1,0 +1,9 @@
+{
+    "nome":"Digogo",
+    "email":["digogo@gmail.com", "diogo.barbosa@gmail.com"],
+    "objetos":{
+        "estojo":["caneta","lapis"],
+        "bolso":"notebook"
+    }
+
+}
