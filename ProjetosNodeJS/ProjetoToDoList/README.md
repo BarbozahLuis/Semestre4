@@ -109,3 +109,119 @@ Ferramentas de Desenvolvimento: Git, Docker (para contêineres), ferramentas de 
 
 
 
+diagrama de fluxo
+
+1. Diagrama de Classes
+O Diagrama de Classes descreve a estrutura do sistema, mostrando as classes principais, seus atributos e métodos, e como elas se relacionam.
+Principais Classes:
+    1.	User
+o	Atributos:
+	userId: String
+	username: String
+	email: String
+	passwordHash: String
+	createdAt: Date
+o	Métodos:
+	register()
+	login()
+	updateProfile()
+	deleteAccount()
+    2.	Task
+o	Atributos:
+	taskId: String
+	title: String
+	description: String
+	status: String (e.g., Pending, Completed)
+	dueDate: Date
+	priority: String (e.g., Low, Medium, High)
+	createdAt: Date
+	updatedAt: Date
+o	Métodos:
+	createTask()
+	updateTask()
+	deleteTask()
+	markAsComplete()
+    3.	Category
+o	Atributos:
+	categoryId: String
+	name: String
+	description: String
+o	Métodos:
+	addCategory()
+	updateCategory()
+	removeCategory()
+    4.	Notification
+o	Atributos:
+	notificationId: String
+	message: String
+	type: String (e.g., Reminder, Alert)
+	userId: String
+o	Métodos:
+	sendNotification()
+	deleteNotification()
+    5.	Report
+o	Atributos:
+	reportId: String
+	userId: String
+	dateRange: DateRange
+	summary: String
+o	Métodos:
+	generateReport()
+	viewReport()
+Relações:
+•	Um User pode ter várias Tasks.
+•	Um Task pode pertencer a uma ou mais Categorys.
+•	Um User pode receber várias Notifications.
+•	Relacionamento entre User e Report é de um-para-muitos.
+2. Diagrama de Casos de Uso
+O Diagrama de Casos de Uso ilustra as interações entre os usuários e o sistema, destacando as funcionalidades principais.
+Atores:
+•	Usuário (User)
+•	Administrador (Admin) (opcional, para gerenciamento adicional)
+Casos de Uso:
+    1.	Registrar-se:
+o	Ator: Usuário
+o	Descrição: O usuário se registra na aplicação fornecendo informações como nome, e-mail e senha.
+    2.	Login:
+o	Ator: Usuário
+o	Descrição: O usuário faz login utilizando seu e-mail e senha.
+    3.	Adicionar Tarefa:
+o	Ator: Usuário
+o	Descrição: O usuário cria uma nova tarefa com título, descrição, data de vencimento e prioridade.
+    4.	Editar Tarefa:
+o	Ator: Usuário
+o	Descrição: O usuário modifica os detalhes de uma tarefa existente.
+    5.	Excluir Tarefa:
+o	Ator: Usuário
+o	Descrição: O usuário exclui uma tarefa que não é mais necessária.
+    6.	Marcar Tarefa como Concluída:
+o	Ator: Usuário
+o	Descrição: O usuário marca uma tarefa como concluída.
+    7.	Visualizar Notificações:
+o	Ator: Usuário
+o	Descrição: O usuário visualiza as notificações relacionadas às suas tarefas.
+    8.	Gerar Relatório de Produtividade:
+o	Ator: Usuário
+o	Descrição: O usuário gera e visualiza relatórios sobre suas tarefas e produtividade.
+Relacões:
+•	O ator "Usuário" se relaciona com todos os casos de uso listados.
+3. Diagrama de Fluxo
+O Diagrama de Fluxo mostra o processo de uma tarefa específica dentro do sistema, como a adição de uma nova tarefa.
+Fluxo para Adicionar uma Tarefa:
+    1.	Início
+    2.	Usuário Clica em "Adicionar Tarefa"
+o	Verifica se o usuário está autenticado.
+    3.	Sistema Exibe Formulário de Adição de Tarefa
+o	Campos: Título, Descrição, Data de Vencimento, Prioridade.
+    4.	Usuário Preenche o Formulário
+o	Verifica se todos os campos obrigatórios estão preenchidos.
+    5.	Usuário Clica em "Salvar"
+o	Sistema valida os dados do formulário.
+    6.	Sistema Adiciona a Tarefa ao Banco de Dados
+o	Cria uma nova entrada para a tarefa com os detalhes fornecidos.
+    7.	Sistema Exibe Mensagem de Sucesso
+o	Notifica o usuário sobre a criação bem-sucedida da tarefa.
+    8.	Tarefa Adicionada à Lista de Tarefas do Usuário
+    9.	Fim
+Fluxo Alternativo:
+•	Se houver um erro de validação, o sistema exibe uma mensagem de erro e solicita ao usuário que corrija os dados.
