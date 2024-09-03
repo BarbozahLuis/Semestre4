@@ -225,3 +225,18 @@ o	Notifica o usuário sobre a criação bem-sucedida da tarefa.
     9.	Fim
 Fluxo Alternativo:
 •	Se houver um erro de validação, o sistema exibe uma mensagem de erro e solicita ao usuário que corrija os dados.
+
+
+
+
+
+
+PROTOTIPAGEM
+![alt text](image.png)
+
+
+![alt text](image-1.png)
+
+
+![alt text](image-2.png)
+
