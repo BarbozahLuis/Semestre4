@@ -1,4 +1,4 @@
-import connectMongo from '@/utils/dbConnect';//importando connectmongo 
+import connectMongo from '@/utils/dbConnect';
 import Todo from '@/models/Todo';
 import { NextResponse } from 'next/server';
 
