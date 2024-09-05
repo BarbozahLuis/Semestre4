@@ -1,23 +1,26 @@
 import mongoose from "mongoose";
 
+
 const TodoSchema = new mongoose.Schema({
     title:{
         type:String,
         required:true
     },
     description:{
-        title:{
-            type:String,
-
-        }
+        type:String,
+        required:false
     },
     completed:{
-        type:Enum('A Fazer','Fazendo', 'Concluido'),
+        type:String,
+        enum:['A Fazer', 'Fazendo','Concluído'],
         default:'A Fazer'
-    },
-
+    }
 });
 
-const Todo = mongoose.models.Todo || mongoose.model('Todo', TodoSchema);
+
+const Todo = mongoose.models.Todo || mongoose.model('Todo',TodoSchema);
+
 
 export default Todo;
+
+
