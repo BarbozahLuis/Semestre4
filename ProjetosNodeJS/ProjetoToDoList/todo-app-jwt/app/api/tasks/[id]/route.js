@@ -1,21 +1,22 @@
-import { updateTask, deleteTask } from "@/controllers/TaskController";
-import { NextResponse } from "next/server";
+import { updateTask, deleteTask } from "@/controllers/TaskController"
+import { NextResponse } from "next/server"
 
-export async function PUT(request,{params}) {
+
+export async function PUT(request, { params }) {
     try {
         const data = await request.json();
         const task = await updateTask(params.id, data);
         if (!task) {
-            return NextResponse.json({ success: false}, {status:400});
+            return NextResponse.json({ success: false }, { status: 400 });
         }
-        return NextResponse.json({success: true, data: task});
+        return NextResponse.json({ success: true, data: task });
     } catch (error) {
-        return NextResponse.json({success:false}, {status:400});
+        return NextResponse.json({ success: false }, { status: 400 });
     }
 }
 
 
-export async function DELETE(req, {params}) {
+export async function DELETE({params}) {
     try {
         const task = await deleteTask(params.id);
         if (!task) {
