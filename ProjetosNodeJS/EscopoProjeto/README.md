@@ -67,6 +67,9 @@ Relevante: Auxiliar os usuários a organizarem suas finanças de forma prática 
 Temporal: Completar o desenvolvimento da aplicação em 12 semanas.
 
 5. Cronograma - Diagrama de Gantt
+
+
+
 ![alt text](<Diagrama Gantt.png>)
 
 Análise de Risco
@@ -109,6 +112,8 @@ Tutoriais e exemplos relevantes
 Diagramas
 
 Diagrama de Classes
+
+
 ![alt text](<Diagrama de Classes.png>)
 
 Diagrama de Uso
