@@ -116,3 +116,7 @@ Diagrama de Uso
 
 Diagrama de Fluxo
 ![alt text](<Diagrama de fluxo.png>)
+
+
+Prototipagem
+![alt text](prototipagem.png)  
