@@ -62,22 +62,39 @@ export default function TaskPage() {
 
   return (
     <div>
-      <h1>Task List</h1>
-      <input
-        type="text"
-        value={newTask}
-        onChange={(e) => setNewTask(e.target.value)}
-        placeholder="New task"
-      />
-      <button onClick={addTask}>Add Task</button>
-      <ul>
+      <div className="header">
+        <img src="https://i.imgur.com/tN7q4jN.png" alt="FinTrack Logo" />
+        <button>Logout</button>
+      </div>
+      <div className="container">
+        <h1>FinTrack</h1>
+        <div className="input-group">
+          <label htmlFor="new-task">Insira uma nova tarefa:</label>
+          <input
+            type="text"
+            id="new-task"
+            value={newTask}
+            onChange={(e) => setNewTask(e.target.value)}
+            placeholder="Nova tarefa"
+          />
+          <button onClick={addTask} className="add-task-button">Adicionar Tarefa</button>
+        </div>
         {tasks.map((task) => (
-          <li key={task._id}>
-            {task.title}
-            <button onClick={() => deleteTask(task._id)}>Delete</button>
-          </li>
+          <div className="input-group" key={task._id}>
+            <label htmlFor={`task-${task._id}`}>{task.title}:</label>
+            <input type="text" id={`task-${task._id}`} value={task.title} readOnly />
+            <div className="button-group">
+              <button className="edit">Editar</button>
+              <button className="delete" onClick={() => deleteTask(task._id)}>Deletar</button>
+              <button className="concluded">Concluído</button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className="footer">
+        <button>Sobre nós</button>
+        <button>Contato</button>
+      </div>
     </div>
   );
 }

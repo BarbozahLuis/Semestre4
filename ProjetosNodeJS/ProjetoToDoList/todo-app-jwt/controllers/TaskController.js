@@ -1,30 +1,81 @@
+//CRUD
+
+
 import Task from "@/models/Task";
 import connectMongo from "@/utils/dbConnect";
 
 
-//CRUD
-export const getTask = async () => {
+//carregar Tasks
+export const getTasks = async (req, res) => {
     await connectMongo();
-    return await Task.find();
+    try {
+        const tasks = await Task.find({ UserId: req.user.userId });
+        res.status(200).json({ tasks });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 }
 
 
-export const createTask = async (data) => {
+//Criar Tarefa
+export const addTask = async (req, res) => {
+    const { title } = req.body;
     await connectMongo();
-    return await Task.create(data);
-}
+    try {
+        const newTask = new Task({
+            title,
+            userId: req.user.userId, // Associa a tarefa ao usuário logado
+        });
+        await newTask.save();
+        res.status(201).json({ task: newTask });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao adicionar tarefa' });
+    }
+};
 
 
-export const updateTask = async (id, data) => {
+//Atualizar Tarefa
+export const updateTask = async (req, res) => {
+    const { id } = req.query;
+    const data = req.body;
     await connectMongo();
-    return await Task.findByIdAndUpdate(id, data, {
-        new: true,
-        runValidators: true
-    })
-}
 
 
-export const deleteTask = async (id) => {
+    try {
+        const updatedTask = await Task.findOneAndUpdate(
+            { _id: id, userId: req.user.userId},
+            { data },
+            { new: true }
+        );
+        if (!updatedTask) return res.status(404).json({
+            message: 'Tarefa não encontrada'
+        });
+        res.status(200).json({ task: updatedTask });
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao atualizar tarefa' });
+    }
+};
+
+
+// delete Tarefa
+export const deleteTask = async (req, res) => {
+    const { id } = req.query;
     await connectMongo();
-    return await Task.deleteOne({_id:id});
-}
+
+
+    try {
+        const deletedTask = await Task.findOneAndDelete({
+            _id: id, userId: req.user.userId
+        });
+        if (!deletedTask) return res.status(404).json({
+            message: 'Tarefa não encontrada'
+        });
+        res.status(200).json({
+            message: 'Tarefa deletada com sucesso'
+        });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Erro ao deletar tarefa'
+        });
+    }
+};
