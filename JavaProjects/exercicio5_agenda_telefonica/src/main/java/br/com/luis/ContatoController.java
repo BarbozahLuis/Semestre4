@@ -53,4 +53,10 @@ public class ContatoController {
         throw new ContatoNaoEncontrado("Contato não encontrado");
     }
     //buscar
+    public Contato buscarContato(String nome){
+        for (int i = 0; i < contadorDeContatos; i++) {
+            
+        }
+        return null;
+    }
 }
