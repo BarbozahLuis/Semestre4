@@ -16,7 +16,7 @@ public class Main {
             try {
                 operacao = sc.nextInt();
                 switch (operacao) {
-                    case 1:
+                     case 1:try {
                         System.out.println("Nome: ");
                         String nome = sc.next();
                         System.out.println("Endereço: ");
@@ -27,16 +27,24 @@ public class Main {
                         String telefone = sc.next();
                         Contato contato = new Contato(nome, email, endereco, telefone);
                         agenda.addContato(contato);
+                     } catch (Exception e) {
+                        System.err.println(e);
+                     }
+                        
 
                         break;
                     case 2:
                     agenda.listarContato();
                     break;
 
-                    case 3:
+                    case 3:try {
                         System.out.println("Digite o nome a ser buscado");
                         String nomeBuscado = sc.next();
                         agenda.buscaNome(nomeBuscado);
+                    } catch (Exception e) {
+                        System.err.println(e);
+                    }
+                        
                     break;
 
                     case 4:

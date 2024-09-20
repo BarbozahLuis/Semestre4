@@ -50,13 +50,15 @@ public class ContatoController {
                 }
             }
         }
-        throw new ContatoNaoEncontrado("Contato não encontrado");
+        
     }
     //buscar
-    public Contato buscarContato(String nome){
+    public Contato buscarContato(String nome) throws ContatoNaoEncontrado{
         for (int i = 0; i < contadorDeContatos; i++) {
-            
+            if (contatos[i].getNome().equals(nome)) {
+                return contatos[i];
+            }
         }
-        return null;
+        throw new ContatoNaoEncontrado("Contato não encontrado");
     }
 }
