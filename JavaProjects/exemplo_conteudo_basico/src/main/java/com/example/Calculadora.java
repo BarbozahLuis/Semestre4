@@ -10,14 +10,16 @@ public class Calculadora {
 
         do {
             menu();
-            escolha = scanner.nextInt();
+            
 
-            if (escolha == 6) {
-                System.out.println("Saindo...");
-                break;
-            }
+            
 
             try {
+                escolha = scanner.nextInt();
+                if (escolha == 6) {
+                    System.out.println("Saindo...");
+                    break;
+                }
                 switch (escolha) {
                     case 1:
                         System.out.print("Digite o primeiro número: ");
