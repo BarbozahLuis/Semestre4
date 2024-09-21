@@ -61,4 +61,22 @@ public class ContatoController {
         }
         throw new ContatoNaoEncontrado("Contato não encontrado");
     }
+
+    //remover contato
+    public void removerContato(String nome) throws ContatoNaoEncontrado{
+        boolean encontrado=false;
+        for (int i = 0; i < contadorDeContatos; i++) {
+            if (contatos[i].getNome().equals(nome)) {
+                encontrado=true;
+                contatos[i]=contatos[contadorDeContatos-1];
+                contatos[contadorDeContatos-1]=null;
+                contadorDeContatos--;
+                System.out.println("Contato removido com sucesso");
+            }
+        }
+        if (!encontrado) {
+            throw new ContatoNaoEncontrado("Contato não encontrado");
+        }
+    }
+
 }

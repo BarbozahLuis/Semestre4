@@ -12,7 +12,8 @@ public class Main {
             System.out.println("1 - Adicionar contato");
             System.out.println("2 - Listar contato");
             System.out.println("3 - Buscar contato pelo nome");
-            System.out.println("4 - Sair");
+            System.out.println("4 - Deletar contato");
+            System.out.println("5 - Sair");
             try {
                 operacao = sc.nextInt();
                 switch (operacao) {
@@ -40,7 +41,7 @@ public class Main {
                     case 3:try {
                         System.out.println("Digite o nome a ser buscado");
                         String nomeBuscado = sc.next();
-                        agenda.buscaNome(nomeBuscado);
+                        System.out.println(agenda.buscarContato(nomeBuscado).toString());
                     } catch (Exception e) {
                         System.err.println(e);
                     }
@@ -48,6 +49,17 @@ public class Main {
                     break;
 
                     case 4:
+                    try {
+                        System.out.println("Digite o nome a ser buscado");
+                        String nomeDeletar = sc.next();
+                        agenda.removerContato(nomeDeletar);
+                        System.out.println("Contato deletado com sucesso");
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                    break;
+
+                    case 5:
                     System.out.println("Saindo...");
                     break;
 
@@ -62,7 +74,7 @@ public class Main {
                 System.out.println("Digite um valor valido");
                 break;
             }
-        } while (operacao !=4);
+        } while (operacao !=5);
         sc.close();
     }
 }
