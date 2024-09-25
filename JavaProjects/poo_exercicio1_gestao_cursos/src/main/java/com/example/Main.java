@@ -57,12 +57,67 @@ public class Main {
                                 
                             }
                         }
+                        if (!encontrado) {
+                            throw new Exception("Curso não encontrado");
+                        }
                     } catch (Exception e) {
-                        // TODO: handle exception
+                        System.out.println(e);
                     }    
                     break;
-                
+
+                    case "4":
+                        String nomeCursoI = JOptionPane.showInputDialog("Informe o nome do curso");
+                        for (Curso curso : cursos) {
+                            if (curso.getNomeCurso().equalsIgnoreCase(nomeCursoI)) {
+                                curso.infoCurso();
+                                continue;
+                            }
+                        }
+
+
+                    break;
+
+                    case "5":
+                        String nomeCursoN = JOptionPane.showInputDialog("Informe o nome do curso");
+                        try {
+                            boolean encontrado2 = false;
+                            for (Curso curso : cursos) {
+                                if (curso.getNomeCurso().equalsIgnoreCase(nomeCursoN)) {
+                                    curso.atribuirNota();
+                                    encontrado2 = true;
+                                }
+                            }
+                            if (!encontrado2) {
+                                throw new Exception();
+                            }
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+                    break;
+
+                    case "6":
+                    String nomeCursoR = JOptionPane.showInputDialog("Informe o nome do curso");
+                        try {
+                            boolean encontrado3 = false;
+                            for (Curso curso : cursos) {
+                                if (curso.getNomeCurso().equalsIgnoreCase(nomeCursoR)) {
+                                    curso.exibirResultadoFinal();
+                                    encontrado3 = true;
+                                }
+                            }
+                            if (!encontrado3) {
+                                throw new Exception("Curso não encontrado");
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    break;
+                    
+                    case "7":  
+                        System.out.println("Saindo...");
+                    break;
                     default:
+                    System.out.println("Digite uma opção valida");
                         break;
                 }
         } while (operacao!="7");

@@ -1,6 +1,8 @@
 package com.example;
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,15 +42,17 @@ public class Curso {
     }
 
     //método lançar nota
-    public void atribuirNotaNome(String nomeAluno, double notaAluno){
+    public void atribuirNota(){
+        if (alunos.size()==0) {
+            System.out.println("Nenhum aluno cadastrado");
+        }else{
+
         for (Aluno aluno : alunos) {
-            if (aluno.getNome().equalsIgnoreCase(nomeAluno)) {
-                aluno.setNota(notaAluno);
-                return;
-            }
+            double nota = Double.parseDouble(JOptionPane.showInputDialog("Nota do "+aluno.getNome()+":"));
+            aluno.setNota(nota);
         }
         System.out.println("Aluno não encontrado!");
-    }
+    }}
 
     //método exibir resultado final 
     public void exibirResultadoFinal(){
