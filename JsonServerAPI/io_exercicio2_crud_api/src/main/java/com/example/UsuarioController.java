@@ -100,9 +100,9 @@ public class UsuarioController {
                     if (status!=HttpURLConnection.HTTP_CREATED) { //se for diferente de 201 lançar um exception
                         throw new Exception("Erro ao cadastrar usuario" + status);
                     }
-                }catch(Exception e){
-                    e.printStackTrace();
                 }
+                
+            System.out.println("Usuario cadastrado com sucesso!");
 
         } catch (Exception e) {
             e.printStackTrace();
