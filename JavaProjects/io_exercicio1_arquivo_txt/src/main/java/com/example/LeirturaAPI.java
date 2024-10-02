@@ -21,8 +21,16 @@ public class LeirturaAPI{
             BufferedReader br = new BufferedReader(
                 new InputStreamReader(con.getInputStream())
             );
+
+            //laço de repetição
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                System.out.println(linha);
+            }
+            br.close();
+
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         
     }
