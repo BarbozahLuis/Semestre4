@@ -108,4 +108,60 @@ public class UsuarioController {
             e.printStackTrace();
         }
     }
+
+    //meétodo PUT
+    public void updateUser(Usuario usuario){
+        try {
+            url = new URL("http://localhost:3000/usuarios/"+usuario.getId());
+            //estabelecer conexão da aplicação com o json
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json; utf-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoOutput(true);
+
+            //converter o objeto usuario para json
+            JSONObject usuarioJson = new JSONObject();
+            usuarioJson.put("id", usuario.getId());
+            usuarioJson.put("nome", usuario.getNome());
+            usuarioJson.put("idade", usuario.getIdade());
+            usuarioJson.put("endereco", usuario.getEndereco());
+
+            try(BufferedWriter bw = new BufferedWriter(
+                new OutputStreamWriter(con.getOutputStream(), "UTF-8"))){
+
+                    bw.write(usuarioJson.toString());
+                    bw.flush();
+
+                    //verifica o status da conexão                
+                    if (con.getResponseCode()!=HttpURLConnection.HTTP_OK) { //se for diferente de 201 lançar um exception
+                        throw new Exception("Erro de conexão");
+                    }
+                    read();
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //método - delete
+    public void deleteUser(String id){
+        try {
+            url = new URL("http://localhost:3000/usuarios/"+id);
+            //estabelecer conexão da aplicação com o json
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("DELETE");//metodo
+            con.setRequestProperty("Accept", "application/json");
+
+            int status = con.getResponseCode();
+            if (status != 200 && status != 204) {
+                throw new Exception("Erro de conexão");
+            }
+
+            System.out.println("Deletado com sucesso");
+            read();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
