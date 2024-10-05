@@ -12,6 +12,9 @@ public class ProdutoController {
     private Connection con;
     private java.sql.Statement stmt;
     private ResultSet rs;
+    private String nomeMaisCaro;
+    private String nomeMaisBarato;
+    private double mediaPreco;
     
     public ProdutoController() {
         produtos = new ArrayList<>();
@@ -48,6 +51,7 @@ public class ProdutoController {
         }
         System.out.println(produtos.toString()
         );
+        
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
@@ -55,5 +59,45 @@ public class ProdutoController {
         }
 
         
+    }
+    public double getMediaPreco() {
+        //calcular a média dos preços
+        mediaPreco = 0;
+        for (Produto produto : produtos) {
+            mediaPreco += produto.getPreco();
+
+        }
+        mediaPreco /= produtos.size();
+        return mediaPreco;
+    }
+
+    public String getNomeMaisBarato() {
+        //achar o mais barato
+        listarProdutos();
+        double menorPreco = Double.MAX_VALUE;
+        for (Produto produto : produtos) {
+            if (menorPreco >= produto.getPreco()) { 
+                menorPreco=produto.getPreco();
+                nomeMaisBarato = produto.getNome(); //sabe o nome do produto mais caro
+                
+                
+            }
+        }
+        return nomeMaisBarato;
+    }
+
+    public String getNomeMaisCaro() {
+        //achar o mais caro
+        double maiorPreco = 0;
+        for (Produto produto : produtos) {
+            if (maiorPreco <= produto.getPreco()) { 
+                maiorPreco=produto.getPreco();
+                nomeMaisCaro = produto.getNome(); //sabe o nome do produto mais caro
+
+                
+            }
+        }
+        
+        return nomeMaisCaro;
     }
 }
