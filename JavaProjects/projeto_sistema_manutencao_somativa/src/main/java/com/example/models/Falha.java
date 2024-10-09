@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Falhas {
+public class Falha {
     private String id;
     private long maquinaID;
     private LocalDate data;

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tecnicos {
+public class Tecnico {
     private String id;
     private String nome;
     private String especialidade;

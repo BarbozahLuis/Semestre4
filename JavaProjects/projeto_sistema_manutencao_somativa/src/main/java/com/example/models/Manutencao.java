@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class historicoManutencao {
+public class Manutencao {
     private String id;
     private long maquinaID;
     private LocalDate data;
