@@ -12,7 +12,7 @@ public class MaquinaController {
         this.maquinas = new ArrayList<>();
     }
 
-    //método - crud
+    //método - create
     public void adicionarMaquina(Maquina maquina) {
         this.maquinas.add(maquina);
     }
@@ -28,9 +28,9 @@ public class MaquinaController {
         maquinas.set(posicao, maquina);
     }
 
-    //metodo delete
-    public void deletarMaquina(int posicao) {
-        maquinas.remove(posicao);
-    }
+    // //metodo delete
+    // public void deletarMaquina(int posicao) {
+    //     maquinas.remove(posicao);
+    // }
     
 }
