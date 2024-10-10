@@ -1,5 +1,4 @@
 package com.example.models;
-
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;

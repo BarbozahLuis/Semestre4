@@ -33,8 +33,4 @@ public class FalhaAPI {
         return falhas;
     }
 
-    public static List<Falha> getFalha() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFalha'");
-    }
 }

@@ -30,8 +30,5 @@ public class TecnicoAPI {
         return tecnicos;
     }
 
-    public static List<Tecnico> getTecnico() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTecnico'");
-    }
+    
 }

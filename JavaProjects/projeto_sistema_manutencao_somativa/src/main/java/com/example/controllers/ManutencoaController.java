@@ -3,6 +3,7 @@ package com.example.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.api.ManutencaoAPI;
 import com.example.models.Manutencao;
 
 public class ManutencoaController {
@@ -20,6 +21,7 @@ public class ManutencoaController {
 
     //método read
     public List<Manutencao> readManutencoes(){
+        manutencaos = ManutencaoAPI.getManutencaos();
         return this.manutencaos;
     }
 

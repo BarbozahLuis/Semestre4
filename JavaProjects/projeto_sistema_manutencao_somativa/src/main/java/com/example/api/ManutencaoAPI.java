@@ -26,7 +26,7 @@ public class ManutencaoAPI {
                     jsonObject.getString("tipo"),
                     jsonObject.getString("pecasTrocadas"),
                     jsonObject.getLong("tempoDeParada"),
-                    jsonObject.getString("tecnicoID"),
+                    jsonObject.getString("tecnicoId"),
                     jsonObject.getString("observacoes")
                 );
                 manutencaos.add(manutencao);
@@ -35,8 +35,5 @@ public class ManutencaoAPI {
         return manutencaos;
     }
 
-    public static List<Manutencao> getManutencao() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFalha'");
-    }
+    
 }
