@@ -1,39 +1,40 @@
 package com.example.api;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.example.models.Maquina;
+import com.example.models.Falha;
 
 public class FalhaAPI {
-    public static List<Maquina> getMaquinas() {
+    public static List<Falha> getFalhas() {
         String json = ApiConnection.getData("falhas");
-        List<Maquina> maquinas = new ArrayList<>();
+        List<Falha> falhas = new ArrayList<>();
 
 
         if (json != null) {
             JSONArray jsonArray = new JSONArray(json);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                Maquina maquina = new Maquina(
+                Falha falha = new Falha(
                     jsonObject.getString("id"),
                     jsonObject.getInt("maquinaId"),
-                    jsonObject.getString("data"),
+                    LocalDate.parse(jsonObject.getString("data")),
                     jsonObject.getString("problema"),
                     jsonObject.getString("prioridade"),
                     jsonObject.getString("operador")
                 );
-                maquinas.add(maquina);
+                falhas.add(falha);
             }
         }
-        return maquinas;
+        return falhas;
     }
 
-    public static List<Maquina> getMaquina() {
+    public static List<Falha> getFalha() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMaquina'");
+        throw new UnsupportedOperationException("Unimplemented method 'getFalha'");
     }
 }

@@ -7,12 +7,12 @@ import java.net.URL;
 
 
 public class ApiConnection {
-    private static final String API_URL = "http://localhost:3000/";
+    private static final String API_URL = "http://localhost:3000/"; //endereço da api
 
 
     public static String getData(String endpoint) {
         try {
-            URL url = new URL(API_URL + endpoint);
+            URL url = new URL(API_URL + endpoint);//aqui seria quando juntamos o endereço da api junto do endpoint que seria o maquinas por exemplo
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 

@@ -1,7 +1,13 @@
 package com.example;
 
+import javax.swing.SwingUtilities;
+
+import com.example.view.SistemaManutencaoGUI;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        SwingUtilities.invokeLater(()-> {
+            new SistemaManutencaoGUI().setVisible(true);
+    });
     }
 }
