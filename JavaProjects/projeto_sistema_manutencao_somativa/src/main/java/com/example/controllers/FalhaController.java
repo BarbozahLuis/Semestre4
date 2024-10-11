@@ -3,6 +3,7 @@ package com.example.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.api.FalhaAPI;
 import com.example.models.Falha;
 
 public class FalhaController {
@@ -19,6 +20,7 @@ public class FalhaController {
 
     //método - read
     public List<Falha> readFalhas() {
+        falhas = FalhaAPI.getFalhas();// buscar as falhas na api
         return this.falhas;
     }
 

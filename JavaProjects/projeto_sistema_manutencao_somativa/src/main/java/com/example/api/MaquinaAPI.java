@@ -43,5 +43,31 @@ public class MaquinaAPI {
         }
         return maquinas;
     }
+
+    public static void postMaquinas(Maquina maquina) {
+        //criar um objeto json
+        JSONObject maquinaObject = new JSONObject();
+        maquinaObject.put("id", maquina.getId());
+        maquinaObject.put("codigo", maquina.getCodigo());
+        maquinaObject.put("nome", maquina.getNome());
+        maquinaObject.put("modelo", maquina.getModelo());
+        maquinaObject.put("fabricante", maquina.getFabricante());
+        maquinaObject.put("dataAquisicao", maquina.getDataAquisicao().toString());
+        maquinaObject.put("tempoVidaEstimado", maquina.getTempoVidaEstimado());
+        maquinaObject.put("localizacao", maquina.getLocalizacao());
+        maquinaObject.put("detalhes", maquina.getDetalhes());
+        maquinaObject.put("manual", maquina.getManual());
+        //enviar para a api
+        if (!maquinaObject.isEmpty()) {
+            try {
+                ApiConnection.postData("maquinas", maquinaObject.toString());
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
+        
+    }
+
+    
 }
 

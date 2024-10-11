@@ -13,12 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.example.controllers.ManutencoaController;
+import com.example.controllers.ManutencaoController;
 import com.example.models.Manutencao;
 
 public class ManutencaoPanel extends JPanel {
     //atributos
-    private ManutencoaController manutencaoController;
+    private ManutencaoController manutencaoController;
     private JTable manutencaoTable;
     private DefaultTableModel tableModel;
     private JButton btnSalvarAlteracoes;
@@ -27,7 +27,7 @@ public class ManutencaoPanel extends JPanel {
     //construtor
     public ManutencaoPanel() {
         super(new BorderLayout());
-        manutencaoController = new ManutencoaController();
+        manutencaoController = new ManutencaoController();
 
         tableModel = new DefaultTableModel(new Object[]{
             "ID", "ID Maquina", "Data", "Tipo", "Peças Trocadas", "Tecnico", "Observações",

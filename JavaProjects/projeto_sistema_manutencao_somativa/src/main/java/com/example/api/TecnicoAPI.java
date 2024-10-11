@@ -29,6 +29,4 @@ public class TecnicoAPI {
         }
         return tecnicos;
     }
-
-    
 }

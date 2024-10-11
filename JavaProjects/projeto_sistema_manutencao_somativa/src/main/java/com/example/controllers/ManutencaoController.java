@@ -6,11 +6,11 @@ import java.util.List;
 import com.example.api.ManutencaoAPI;
 import com.example.models.Manutencao;
 
-public class ManutencoaController {
+public class ManutencaoController {
     //atributos
     private List<Manutencao> manutencaos;
 
-    public ManutencoaController(){
+    public ManutencaoController(){
         this.manutencaos = new ArrayList<>();
     }
 

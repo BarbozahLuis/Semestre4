@@ -14,6 +14,7 @@ public class MaquinaController {
 
     //método - create
     public void adicionarMaquina(Maquina maquina) {
+        MaquinaAPI.postMaquinas(maquina);//adicionar a API no controller
         this.maquinas.add(maquina);
     }
 

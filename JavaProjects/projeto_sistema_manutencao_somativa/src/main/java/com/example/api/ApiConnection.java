@@ -1,7 +1,9 @@
 package com.example.api;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -11,6 +13,7 @@ public class ApiConnection {
 
 
     public static String getData(String endpoint) {
+
         try {
             URL url = new URL(API_URL + endpoint);//aqui seria quando juntamos o endereço da api junto do endpoint que seria o maquinas por exemplo
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -37,6 +40,39 @@ public class ApiConnection {
             return null;
         }
     }
+
+    //post
+    public static void postData(String endpoint, String inputData){
+        try {
+            URL url = new URL(API_URL + endpoint);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            
+            try (BufferedWriter bw = new BufferedWriter(
+                    new OutputStreamWriter(connection.getOutputStream(), "UTF-8"))) {
+                bw.write(inputData);//informações da string que vão para o Json
+                bw.flush();
+            }
+            // Verificar o status da resposta
+            int status = connection.getResponseCode();
+            if (status != HttpURLConnection.HTTP_CREATED) { // HTTP 201 Created
+                throw new Exception("Erro ao criar usuário: " + status);
+            }
+
+            System.out.println("Cadastrado com Sucesso");
+            connection.disconnect();
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+           
+        }
+    }
+
+
 
 
 }

@@ -3,6 +3,7 @@ package com.example.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.api.TecnicoAPI;
 import com.example.models.Tecnico;
 
 public class TecnicoController {
@@ -19,6 +20,7 @@ public class TecnicoController {
 
     //método read
     public List<Tecnico> readTecnicos() {
+        tecnicos =  TecnicoAPI.getTecnicos();
         return this.tecnicos;
     }
 
