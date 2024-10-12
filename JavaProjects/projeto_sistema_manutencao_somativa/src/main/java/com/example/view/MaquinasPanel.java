@@ -69,5 +69,12 @@ public class MaquinasPanel extends JPanel{
 
 
         //criar as ActionListener para os botões
+        btnSalvarAlteracoes.addActionListener(new ActionListener() { 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //salvar as alterações feitas na tabela
+                //chamar o controller
+            }
+            });
     }
 }

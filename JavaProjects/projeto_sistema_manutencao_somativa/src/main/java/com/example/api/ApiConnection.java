@@ -41,7 +41,7 @@ public class ApiConnection {
         }
     }
 
-    //post
+    //metodo - post
     public static void postData(String endpoint, String inputData){
         try {
             URL url = new URL(API_URL + endpoint);
@@ -60,6 +60,64 @@ public class ApiConnection {
             int status = connection.getResponseCode();
             if (status != HttpURLConnection.HTTP_CREATED) { // HTTP 201 Created
                 throw new Exception("Erro ao criar usuário: " + status);
+            }
+
+            System.out.println("Cadastrado com Sucesso");
+            connection.disconnect();
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+           
+        }
+    }
+
+
+    //metodo - put
+    public static void putData(String endpoint, String inputData, String id){//diferença de post, para put, é adicionar o ID que será puxado
+        try {
+            URL url = new URL(API_URL + endpoint + "/"+ id);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("PUT");
+            connection.setRequestProperty("Content-Type", "application/json; utf-8");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            
+            try (BufferedWriter bw = new BufferedWriter(
+                    new OutputStreamWriter(connection.getOutputStream(), "UTF-8"))) {
+                bw.write(inputData);//informações da string que vão para o Json
+                bw.flush();
+            }
+            // Verificar o status da resposta
+            int status = connection.getResponseCode();
+            if (status != HttpURLConnection.HTTP_OK) { // HTTP 201 Created
+                throw new Exception("Erro ao criar usuário: " + status);
+            }
+
+            System.out.println("Cadastrado com Sucesso");
+            connection.disconnect();
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+           
+        }
+    }
+
+    //metodo - delete
+
+    public static void delteData(String endpoint, String id){//diferença de post, para put, é adicionar o ID que será puxado
+        try {
+            URL url = new URL(API_URL + endpoint + "/" + id);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("DELETE");
+            connection.setDoOutput(true);
+            
+            
+            // Verificar o status da resposta
+            int status = connection.getResponseCode();
+            if (status != HttpURLConnection.HTTP_OK) { // HTTP 201 Created
+                throw new Exception("Erro ao deletar usuário: " + status);
             }
 
             System.out.println("Cadastrado com Sucesso");
