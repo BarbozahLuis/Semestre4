@@ -1,38 +1,51 @@
 package com.example.controllers;
+
+import com.example.api.MaquinaAPI;
+import com.example.models.Maquina; // Certifique-se de que o pacote está correto
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.api.MaquinaAPI;
-import com.example.models.Maquina;
-
 public class MaquinaController {
     private List<Maquina> maquinas;
-    
+
     public MaquinaController() {
-        this.maquinas = new ArrayList<>();
+        maquinas = new ArrayList<>();
     }
 
-    //método - create
-    public void adicionarMaquina(Maquina maquina) {
-        MaquinaAPI.postMaquinas(maquina);//adicionar a API no controller
-        this.maquinas.add(maquina);
+    // Método para criar uma nova máquina
+    public Maquina createMaquina(Maquina maquina) {
+        // Chama a API e espera um objeto Maquina em resposta
+        Maquina novaMaquina = MaquinaAPI.createMaquina(maquina);
+        if (novaMaquina != null) {
+            // Atualiza a lista de máquinas após criar uma nova
+            readMaquinas();
+        }
+        return novaMaquina; // Retorna o objeto Maquina criado
     }
 
-    //metodo read
+    // Método para listar todas as máquinas
     public List<Maquina> readMaquinas() {
         maquinas = MaquinaAPI.getMaquinas();
         return maquinas;
     }
 
-    //metodo update
-    public void updateMaquina(int posicao, Maquina maquina) {
-        MaquinaAPI.putMaquinas(maquina);//método para atualizar informação que vem do MáquinaAPI
-        maquinas.set(posicao, maquina);
+    // Método para atualizar uma máquina
+    public String updateMaquina(Maquina maquina) {
+        String response = MaquinaAPI.updateMaquina(maquina);
+        if (response != null) {
+            // Opcionalmente, atualiza a lista de máquinas após a atualização
+            readMaquinas();
+        }
+        return response; // Retorna resposta da API
     }
 
-    // //metodo delete
-    // public void deletarMaquina(int posicao) {
-    //     maquinas.remove(posicao);
-    // }
-    
+    // Método para deletar uma máquina
+    public String deleteMaquina(String id) {
+        String response = MaquinaAPI.deleteMaquina(id);
+        if (response != null) {
+            // Opcionalmente, atualiza a lista de máquinas após a exclusão
+            readMaquinas();
+        }
+        return response; // Retorna resposta da API
+    }
 }

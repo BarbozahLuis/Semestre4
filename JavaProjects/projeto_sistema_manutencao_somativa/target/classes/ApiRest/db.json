@@ -11,6 +11,18 @@
       "localizacao": "Linha 1",
       "detalhes": "Operação em alta precisão",
       "manual": "URL do manual"
+    },
+    {
+      "tempoVidaEstimado": 10,
+      "codigo": "1",
+      "localizacao": "linha teste",
+      "nome": "teste 1",
+      "fabricante": "teste 1",
+      "manual": "url manual",
+      "modelo": "teste 1",
+      "dataAquisicao": "2021-01-05",
+      "detalhes": "opera��o teste",
+      "id": "b54d"
     }
   ],
   "historicoManutencao": [

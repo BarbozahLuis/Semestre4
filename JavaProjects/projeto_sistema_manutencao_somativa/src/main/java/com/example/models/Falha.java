@@ -11,10 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class Falha {
     private String id;
-    private long maquinaID;
+    private String maquinaID;
     private LocalDate data;
     private String problema;
     private String prioridade;

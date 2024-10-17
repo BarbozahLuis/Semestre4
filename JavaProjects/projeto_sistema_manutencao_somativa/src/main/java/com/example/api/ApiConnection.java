@@ -1,136 +1,175 @@
 package com.example.api;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
 public class ApiConnection {
-    private static final String API_URL = "http://localhost:3000/"; //endereço da api
+    // URL base da API
+    private static final String API_URL = "http://localhost:3000/";
 
-
+    // Método para realizar uma requisição GET
     public static String getData(String endpoint) {
-
         try {
-            URL url = new URL(API_URL + endpoint);//aqui seria quando juntamos o endereço da api junto do endpoint que seria o maquinas por exemplo
+            // Cria uma URL completa com o endpoint
+            URL url = new URL(API_URL + endpoint);
+            
+            // Abre uma conexão HTTP
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            // Define o método de requisição como GET
             connection.setRequestMethod("GET");
 
-
+            // Lê a resposta da requisição
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
             StringBuilder content = new StringBuilder();
 
-
+            // Processa o conteúdo da resposta
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
 
-
+            // Fecha o leitor e a conexão
             in.close();
             connection.disconnect();
-            return content.toString();
 
+            // Retorna o conteúdo da resposta como string
+            return content.toString();
 
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return null; // Retorna null em caso de erro
         }
     }
 
-    //metodo - post
-    public static void postData(String endpoint, String inputData){
+    // Método para realizar uma requisição POST com um payload JSON
+    public static String postData(String endpoint, String jsonPayload) {
         try {
+            // Cria uma URL completa com o endpoint
             URL url = new URL(API_URL + endpoint);
+            
+            // Abre uma conexão HTTP
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            // Define o método de requisição como POST
             connection.setRequestMethod("POST");
+            
+            // Define os headers da requisição
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-            
-            try (BufferedWriter bw = new BufferedWriter(
-                    new OutputStreamWriter(connection.getOutputStream(), "UTF-8"))) {
-                bw.write(inputData);//informações da string que vão para o Json
-                bw.flush();
-            }
-            // Verificar o status da resposta
-            int status = connection.getResponseCode();
-            if (status != HttpURLConnection.HTTP_CREATED) { // HTTP 201 Created
-                throw new Exception("Erro ao criar usuário: " + status);
+            connection.setDoOutput(true); // Permite envio de dados no corpo da requisição
+
+            // Envia o JSON payload na requisição
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+                wr.writeBytes(jsonPayload);
+                wr.flush();
             }
 
-            System.out.println("Cadastrado com Sucesso");
+            // Lê a resposta da requisição
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            // Processa o conteúdo da resposta
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            // Fecha o leitor e a conexão
+            in.close();
             connection.disconnect();
 
+            // Retorna o conteúdo da resposta como string
+            return content.toString();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-           
+            return null; // Retorna null em caso de erro
         }
     }
 
-
-    //metodo - put
-    public static void putData(String endpoint, String inputData, String id){//diferença de post, para put, é adicionar o ID que será puxado
+    // Método para realizar uma requisição PUT com um payload JSON
+    public static String putData(String endpoint, String jsonPayload) {
         try {
-            URL url = new URL(API_URL + endpoint + "/"+ id);
+            // Cria uma URL completa com o endpoint
+            URL url = new URL(API_URL + endpoint);
+            
+            // Abre uma conexão HTTP
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            // Define o método de requisição como PUT
             connection.setRequestMethod("PUT");
+            
+            // Define os headers da requisição
             connection.setRequestProperty("Content-Type", "application/json; utf-8");
             connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-            
-            try (BufferedWriter bw = new BufferedWriter(
-                    new OutputStreamWriter(connection.getOutputStream(), "UTF-8"))) {
-                bw.write(inputData);//informações da string que vão para o Json
-                bw.flush();
-            }
-            // Verificar o status da resposta
-            int status = connection.getResponseCode();
-            if (status != HttpURLConnection.HTTP_OK) { // HTTP 201 Created
-                throw new Exception("Erro ao criar usuário: " + status);
+            connection.setDoOutput(true); // Permite envio de dados no corpo da requisição
+
+            // Envia o JSON payload na requisição
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
+                wr.writeBytes(jsonPayload);
+                wr.flush();
             }
 
-            System.out.println("Cadastrado com Sucesso");
+            // Lê a resposta da requisição
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            // Processa o conteúdo da resposta
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+
+            // Fecha o leitor e a conexão
+            in.close();
             connection.disconnect();
 
+            // Retorna o conteúdo da resposta como string
+            return content.toString();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-           
+            return null; // Retorna null em caso de erro
         }
     }
 
-    //metodo - delete
-
-    public static void delteData(String endpoint, String id){//diferença de post, para put, é adicionar o ID que será puxado
+    // Método para realizar uma requisição DELETE
+    public static String deleteData(String endpoint) {
         try {
-            URL url = new URL(API_URL + endpoint + "/" + id);
+            // Cria uma URL completa com o endpoint
+            URL url = new URL(API_URL + endpoint);
+            
+            // Abre uma conexão HTTP
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
+            // Define o método de requisição como DELETE
             connection.setRequestMethod("DELETE");
-            connection.setDoOutput(true);
-            
-            
-            // Verificar o status da resposta
-            int status = connection.getResponseCode();
-            if (status != HttpURLConnection.HTTP_OK) { // HTTP 201 Created
-                throw new Exception("Erro ao deletar usuário: " + status);
+            connection.setRequestProperty("Accept", "application/json");
+
+            // Lê a resposta da requisição
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+
+            // Processa o conteúdo da resposta
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
             }
 
-            System.out.println("Cadastrado com Sucesso");
+            // Fecha o leitor e a conexão
+            in.close();
             connection.disconnect();
 
+            // Retorna o conteúdo da resposta como string
+            return content.toString();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-           
+            return null; // Retorna null em caso de erro
         }
     }
-
-
-
-
 }
