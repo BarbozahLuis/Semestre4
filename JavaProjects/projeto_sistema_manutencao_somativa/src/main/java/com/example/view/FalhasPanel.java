@@ -267,6 +267,7 @@ public class FalhasPanel extends JPanel {
                     tableModel.setValueAt(newOperador, selectedRow, 5);
 
                     dialog.dispose(); // Fecha o diálogo
+                    
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(dialog, "Erro ao preencher os dados: " + ex.getMessage());
                 }

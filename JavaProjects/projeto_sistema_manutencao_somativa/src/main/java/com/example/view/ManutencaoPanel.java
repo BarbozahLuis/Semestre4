@@ -3,22 +3,18 @@ package com.example.view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 import com.example.controllers.ManutencaoController;
@@ -31,7 +27,6 @@ public class ManutencaoPanel extends JPanel {
     private DefaultTableModel tableModel;
     private JButton btnSalvarAlteracoes;
     private JButton btnCadastrarManutencao;
-    private JButton btnGerarRelatorio;
 
     public ManutencaoPanel() {
         super(new BorderLayout());
@@ -70,10 +65,8 @@ public class ManutencaoPanel extends JPanel {
         JPanel painelInferior = new JPanel(new FlowLayout(FlowLayout.CENTER));
         btnCadastrarManutencao = new JButton("Cadastrar");
         btnSalvarAlteracoes = new JButton("Atualizar");
-        btnGerarRelatorio = new JButton("Gerar Relatório");
         painelInferior.add(btnCadastrarManutencao);
         painelInferior.add(btnSalvarAlteracoes);
-        painelInferior.add(btnGerarRelatorio);
         this.add(painelInferior, BorderLayout.SOUTH);
 
         // Adicionando ActionListeners para os botões
@@ -92,11 +85,7 @@ public class ManutencaoPanel extends JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor, selecione uma linha para editar.");
             }
-        });
-
-        // ActionListener para o botão "Gerar Relatório"
-        btnGerarRelatorio.addActionListener(e -> gerarRelatorioManutencao());
-    }
+        });}
 
     private void openManutencaoDialog(Integer selectedRow) {
         JDialog dialog = new JDialog((JDialog) null,
@@ -181,7 +170,7 @@ public class ManutencaoPanel extends JPanel {
                     JOptionPane.showMessageDialog(dialog, "Alterações salvas com sucesso!");
                 }
                 dialog.dispose(); // Fecha o diálogo
-            } catch (Exception ex) {
+             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(dialog, "Erro ao preencher os dados: " + ex.getMessage());
             }
         });
@@ -198,56 +187,5 @@ public class ManutencaoPanel extends JPanel {
         tableModel.setValueAt(manutencao.getTempoDeParada(), rowIndex, 5);
         tableModel.setValueAt(manutencao.getTecnicoID(), rowIndex, 6);
         tableModel.setValueAt(manutencao.getObservacoes(), rowIndex, 7);
-    }
-
-    // Método para gerar o relatório de manutenção
-    private void gerarRelatorioManutencao() {
-        String filePath = chooseFileLocation();
-        if (filePath == null)
-            return; // Se o usuário cancelou a escolha do arquivo
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            // Calcular métricas MTTR e MTBF (exemplo básico)
-            double mttr = calculateMTTR();
-            double mtbf = calculateMTBF();
-
-            writer.write("Relatório de Manutenção\n");
-            writer.write("MTTR: " + mttr + " horas\n");
-            writer.write("MTBF: " + mtbf + " horas\n");
-            writer.write("Detalhes das Manutenções:\n");
-
-            for (int row = 0; row < tableModel.getRowCount(); row++) {
-                for (int col = 0; col < tableModel.getColumnCount(); col++) {
-                    writer.write(tableModel.getValueAt(row, col) + "\t");
-                }
-                writer.newLine();
-            }
-
-            JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso!");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório: " + e.getMessage());
-        }
-    }
-
-    // Método para escolher a localização do arquivo
-    private String chooseFileLocation() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Salvar Relatório");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files", "txt"));
-        int userSelection = fileChooser.showSaveDialog(this);
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            return fileChooser.getSelectedFile().getAbsolutePath();
-        }
-        return null; // Usuário cancelou
-    }
-
-    private double calculateMTTR() {
-        // Lógica para calcular MTTR (simulação)
-        return 0.0; // Implementar lógica
-    }
-
-    private double calculateMTBF() {
-        // Lógica para calcular MTBF (simulação)
-        return 0.0; // Implementar lógica
     }
 }
