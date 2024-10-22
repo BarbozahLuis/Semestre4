@@ -84,14 +84,19 @@ ESCOPO DO PROEJETO
 
 Crie um diagrama de classes
 
-![alt text](<diagrama de classe.png>)
+![alt text](img/diagrama%20de%20classe.png)
 
 cadastrar um tecnico
+![alt text](img/diagrama%20de%20sequencia%20de%20tecnico.png)
 
 cadastrar uma falha
+![alt text](img/diagrama%20de%20sequencia%20de%20falhas.png)
 
 cadastrar uma máquina
+![alt text](img/diagrama%20de%20sequencia%20de%20maquina.png)
 
+cadastrar uma manutenção
+![alt text](img/diagrame%20de%20sequencia%20manutenção.png)
 
 
 
